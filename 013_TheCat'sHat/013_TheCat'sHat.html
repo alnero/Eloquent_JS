@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Cat's Hat Animation</title>
+  <style type="text/css">
+    body{
+      text-align: center;
+    }
+
+    div{
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="cat_div" style="position: relative">
+    <img id="cat_img" src="img/cat.png">
+    <img id="hat_img" src="img/hat.png" style="position: absolute">
+  </div>
+
+  <script>
+    var cat = document.getElementById("cat_div");
+    var hat = document.getElementById("hat_img");
+    var angle = 0 , lastTime = null ;
+
+    function animate(time){
+      if (lastTime != null){
+        angle += (time - lastTime) * 0.001;
+      }
+      lastTime = time;
+
+      cat.style.top = 100 + (Math.sin(angle) * 50) + "px";
+      cat.style.left = (Math.cos(angle) * 400) + "px";
+
+      hat.style.top = 40 + (Math.sin(angle) * 90) + "px";
+      hat.style.left = -(Math.cos(angle) * 70) + "px";
+   
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+
+  </script>
+</body>
+</html>

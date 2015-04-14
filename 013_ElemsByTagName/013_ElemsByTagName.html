@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Elements by tag name</title>
+  </head>
+  <body>
+    <h1>This is <a href="#">link</a> to my page</h1>
+
+	<p>This is 
+	  <a href="#">link</a>
+	  <a href="#">link</a>
+	  <a href="#">link</a>
+	  <a href="#">link</a>
+	  and some text
+	</p>
+	
+	<script>
+	  function getTagNames(node, str){
+	    var array = node.childNodes;
+	    if(array){
+		  for(var i = 0; i < array.length; i++){
+		    var tag = array[i].tagName;
+		    if(tag && tag.toLowerCase() === str){
+			  tag = tag.toLowerCase();
+			  document.writeln(tag);
+			}
+			getTagNames(array[i], str);
+		  }
+		}
+	  }
+	  
+	  document.writeln("All link tags in h1:");
+	  getTagNames(document.querySelector("h1"), "a");
+
+	  document.writeln("<br/>");
+
+	  document.writeln("All link tags in p:");
+	  getTagNames(document.querySelector("p"), "a");
+	</script>
+  </body>
+</html>		

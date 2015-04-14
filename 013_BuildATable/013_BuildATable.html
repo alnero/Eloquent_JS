@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Build an HTML table with JS</title>
+  </head>
+  <body>
+	<script>
+	  var arrayObj = [
+	    {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+        {name: "Everest", height: 8848, country: "Nepal"},
+        {name: "Mount Fuji", height: 3776, country: "Japan"},
+        {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+        {name: "Vaalserberg", height: 323, country: "Netherlands"},
+        {name: "Denali", height: 6168, country: "United States"},
+        {name: "Popocatepetl", height: 5465, country: "Mexico"}
+	  ];
+	   
+	  var table = document.createElement("table");
+	  var tr = document.createElement("tr");
+	  table.appendChild(tr);
+	  
+      for(var key in arrayObj[0]){
+	    var th = document.createElement("th");
+		th.appendChild(document.createTextNode(key));
+	    tr.appendChild(th);
+	  }
+	  
+	  for(var i = 0; i < arrayObj.length; i++){
+		var tr = document.createElement("tr");
+	    for(var key in arrayObj[i]){
+		  var td = document.createElement("td");
+		  if(key === "height"){
+		    td.style.textAlign = "right";
+		  }
+		  td.appendChild(document.createTextNode(arrayObj[i][key]));
+	      tr.appendChild(td);
+		}
+		table.appendChild(tr);
+	  }
+	  document.body.appendChild(table);
+	</script>
+  </body>
+</html>		
