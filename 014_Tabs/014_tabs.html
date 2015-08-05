@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tab design</title>
+
+  <style type="text/css">
+
+    .tab{
+      width: 50px;
+      height: 30px;
+      border-radius: 5px;
+    }
+
+    #container{
+      width: 500px;
+      border: 1px solid blue;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div id='container'>
+    <p data-tabname="1st">First</p>
+    <p data-tabname="2nd">Second</p>
+    <p data-tabname="3rd">Third</p>
+    <p data-tabname="4th">Fourth</p>
+  </div>
+
+  <script>
+  'use strict'
+
+  var container = document.querySelector('div');
+  asTabs(container);
+
+  function asTabs(node){
+    var childNodes = node.children;
+    var tabs = document.createElement('div');
+
+    for(var i = 0; i < childNodes.length; i++){
+      var inner = childNodes[i];
+      if(i > 0) inner.style.display = "none";
+
+      var tab = document.createElement('button');
+      tab.textContent = inner.getAttribute('data-tabname');
+      tab.className = 'tab';
+      
+      if(i === 0) tab.style.background = 'white';
+      
+      tab.addEventListener('click', function(event){
+        for(var i = 0; i < childNodes.length; i++){
+          inner = childNodes[i];
+          inner.style.display = "none";
+          tabs.children[i].style.background = '#ddd';
+          
+          if(inner.getAttribute('data-tabname') === event.target.textContent){
+            inner.style.display = '';
+            this.style.background = 'white';
+          }
+        }
+      })
+
+      tabs.appendChild(tab);
+    }
+
+    document.body.insertBefore(tabs, node);
+
+  }
+    
+  </script>
+</body>
+</html>

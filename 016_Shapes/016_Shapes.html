@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Shapes on canvas</title>
+</head>
+<body>
+  <canvas width='1000px' heigth='300px'></canvas>
+  <script>
+    var cx = document.querySelector('canvas').getContext('2d');
+
+    function drawTrapezoid(x, y, upperWidth, lowerWidth, height){
+      var inclinedPart = (lowerWidth - upperWidth) / 2;
+      cx.beginPath();
+      cx.moveTo(x, y + height);
+      cx.lineTo(x + lowerWidth, y + height);
+      cx.lineTo(x + upperWidth + inclinedPart, y);
+      cx.lineTo(x + inclinedPart, y);
+      cx.closePath();
+      cx.stroke();
+    }
+
+    drawTrapezoid(10, 20, 30, 70, 35);
+
+    function drawRedDiamond(x, y, sideLength){
+      cx.save();
+      cx.translate(x, y);
+      cx.rotate(0.25 * Math.PI);
+      cx.fillStyle = "red"; 
+      cx.fillRect(0, 0, sideLength, sideLength);
+      cx.restore();
+    }
+
+    drawRedDiamond(150, 10, 40);
+
+    function drawZigZag(x, y, width, height, step){
+      cx.beginPath();
+      cx.moveTo(x, y);
+
+      for(var i = 0; i <= height; i += step){
+        cx.lineTo(x + width, y + step/2);
+        cx.lineTo(x, y + step);
+        cx.stroke();
+        y += step;
+      }
+
+      cx.closePath();
+
+    }
+
+    drawZigZag(220, 10, 80, 60, 15);
+
+    function drawSpiral(x, y, numOfCircles){
+      cx.beginPath();
+      cx.moveTo(x, y);
+      var angle = 0, step = numOfCircles * Math.PI / 100;
+
+      for(var i = 0; i < 100; i++){
+        var nextX = x + Math.cos(angle) * i / 2;
+        var nextY = y + Math.sin(angle) * i / 2;
+        angle += step;
+        cx.lineTo(nextX, nextY);
+        cx.stroke();
+      }
+    }
+
+    drawSpiral(390, 40, 5);
+
+    function drawYellowStar(x, y, rad, rays){
+      var step = 2 * Math.PI / rays;
+
+      cx.beginPath();
+      cx.moveTo(x + rad, y);
+
+      for(var i = step; i <= 2 * Math.PI; i += step){
+        var nextX = x + Math.cos(i) * rad;
+        var nextY = y + Math.sin(i) * rad;
+        cx.quadraticCurveTo(x, y, nextX, nextY);
+        cx.stroke();
+      }
+
+      cx.fillStyle = 'yellow';
+      cx.closePath();
+      cx.fill();
+    }
+
+    drawYellowStar(520, 45, 40, 8);
+  </script>
+</body>
+</html>
+

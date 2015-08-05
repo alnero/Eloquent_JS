@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Censored text field, no Q, W or X</title>
+</head>
+<body>
+  <input type="text">
+
+  <script>
+  'use strict'
+  
+  var textInput = document.querySelector('input');
+  
+  // 81(Q), 87(W), 88(X) can't be typed into
+  var forbidKeys = [81, 87, 88];
+
+  textInput.addEventListener('keyup', function(event){
+    if(forbidKeys.indexOf(event.keyCode) !== -1){
+      textInput.value = textInput.value.slice(0,-1);
+    }
+  });
+    
+  </script>
+</body>
+</html>

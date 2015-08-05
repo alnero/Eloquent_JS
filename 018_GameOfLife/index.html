@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Conway's Game of Life chart</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div id="universe"></div>
+
+  <div id="radio-buttons">
+    <ul>
+      <li>Chaos<br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="own">Own</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="random">Random</label>
+      </li>
+      <li>Still Life<br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="beehive">Beehive</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="tables">Tables</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="biBlocks">Bi-blocks</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="shipAndCanoe">Ship and Canoe</label>
+      </li>
+      <li>Gliders<br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="glidersOne">One</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="glidersTwo">Two</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="glidersThree">Three</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="glidersFour">Four</label>
+      </li>
+      <li>Cyclic Life<br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="blinkers">Blinkers</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="octagonTwo">Octagon 2</label><br>
+        <label class='name-of-patterns'><input name="pattern" type="radio" value="figureEight">Figure Eight</label>
+      </li>
+    </ul>
+  </div>
+  
+  <div id='main-buttons'>
+    <button id='run-button'  onclick="game()" disabled>Run</button>
+    <button id='stop-button' onclick="stopGame()" disabled>Stop</button>
+  </div>
+
+  <div id='description'>
+    <h3>Conway's Game of Life</h3>
+    <p>Clear the universe choosing 'Own'.<br>
+       Generate random cell pattern with 'Random'.<br>
+       Try flying Gliders - they are awesome!<br>
+       Watch for Still and Cyclic Life forms.<br>
+       Click 'Run' to start simulation, click 'Stop', feel free to change the universe and 'Run' again.</p>
+  </div>
+  
+  <!-- Game logic -->
+  <script src='js/game.js'></script>
+
+  <!-- Life patterns -->
+  <script src='js/life_patterns.js'></script>
+</body>
+</html>

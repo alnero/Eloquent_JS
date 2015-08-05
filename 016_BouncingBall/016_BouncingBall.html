@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bouncing ball</title>
+</head>
+<body>
+	<canvas width="500px" height="500px"></canvas>
+
+	<script>
+		var cx = document.querySelector('canvas').getContext('2d');
+
+		function drawLine(x, y, endX, endY, width, color){
+			cx.lineWidth = width;
+			cx.strokeStyle = color;
+
+			cx.beginPath();
+			cx.moveTo(x, y);
+			cx.lineTo(endX, endY);
+			cx.stroke();
+			cx.closePath();
+		}
+
+		drawLine(20, 20, 320, 20, 7, 'brown');
+		drawLine(320, 20, 320, 320, 7, 'cadetBlue');
+		drawLine(320, 320, 20, 320, 7, 'darkOrange');
+		drawLine(20, 320, 20, 20, 7, 'magenta');
+
+		// initial values
+		var x = Math.random() * (310 - 30) + 30
+		  , y = Math.random() * (310 - 30) + 30
+		  , vertSpeed = 1
+		  , horizSpeed = 1
+		  , color = 'black';
+
+		function speed(){
+			return Math.random() * (1 - 0.6) + 0.6;
+		}
+		
+		function animate(time){
+			cx.clearRect(20, 20, 300, 300);
+			cx.beginPath();
+			cx.arc(x, y, 10, 0, 7);
+			cx.fillStyle = color;
+			cx.fill();
+			
+			x = x + horizSpeed;
+			y = y + vertSpeed;
+		
+			if(y >= 310){
+				vertSpeed = -speed();
+				color = 'darkOrange';
+			}
+
+			if(x >= 310){
+				horizSpeed = -speed();
+				color = 'cadetBlue';
+			}
+
+			if(y <= 30){
+				vertSpeed = speed();
+				color = 'brown';
+			}
+
+			if(x <= 30){
+				horizSpeed = speed();
+				color = 'magenta';
+			}
+
+			requestAnimationFrame(animate);
+
+		}
+		
+		requestAnimationFrame(animate);
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>A JavaScript Workbench</title>
+</head>
+<body>
+	<h4>Run your JS code here:</h4>
+	<textarea style="width: 300px; height: 300px"></textarea><br>
+  	<button onclick='run()'>Run</button>
+	
+	<script>
+		var textArea = document.querySelector('textarea');
+    	var par = document.createElement('p');
+
+    	function run(){
+      		if(par.hasChildNodes()){
+        		par.removeChild(par.childNodes[0]);
+      		}
+
+      		try {
+        		var func = new Function(textArea.value);
+        		var result = func();
+        		var resultText = document.createTextNode(result);
+        		par.appendChild(resultText);
+      		} catch(e) {
+        		var errorText = document.createTextNode(e);
+        		par.appendChild(errorText)
+      		}
+
+      		document.body.appendChild(par);
+    	}
+	</script>
+</body>
+</html>

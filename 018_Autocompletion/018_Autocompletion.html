@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Autocompletion</title>
+</head>
+<body>
+	<input type='text' id='field'>
+  	<div id='suggestions' style='cursor: pointer'></div>
+
+  	<script>
+  		var terms = [];
+    	for(var name in window){
+      		terms.push(name);
+    	}
+    
+    	var textField = document.getElementById('field');
+    	var suggestField = document.getElementById('suggestions');
+
+    	textField.addEventListener('input', function(event){
+      		var text = event.target.value;
+      
+      		if(text === '') {
+        		suggestField.innerHTML = '';
+        		return;
+      		}
+      
+      		suggestField.innerHTML = '';
+
+      		terms.forEach(function(term){
+        		if(term.indexOf(text) === 0){
+          			var span = document.createElement('span');
+          			span.innerText = term;
+
+          			span.addEventListener('click', function(event){
+            			textField.value = event.target.innerText;
+          			})
+
+          			suggestField.appendChild(span);
+          			suggestField.appendChild(document.createElement('br'));
+        		}
+      		});
+    	});
+  	</script>
+</body>
+</html>

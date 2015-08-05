@@ -1,0 +1,57 @@
+div {
+  float: left;
+}
+
+ul {
+  margin: 0;
+}
+
+  ul>li {
+    font-size: 18px;
+    font-style: italic;
+  }
+
+#universe {
+  margin: 75px 15px;
+}
+  
+.name-of-patterns {
+  color: paleVioletRed;
+  font-size: 16px;
+}
+
+#main-buttons {
+  clear: left;
+  margin-left: 50px;
+  display: inline;
+}
+
+  button {
+    border: none;
+    border-radius: 28px;
+    padding: 5px 20px;
+    color: white;
+  }
+
+  #run-button {
+    background: coral;
+  }
+
+  #stop-button {
+    background: cadetBlue;
+  }
+
+  #stop-button:disabled, 
+  #run-button:disabled {
+    background: lightGrey;
+  }
+
+#radio-buttons {
+  margin-top: 17px;
+}    
+
+#description {
+  clear: both;
+  margin: 15px;
+  font-style: italic;
+}

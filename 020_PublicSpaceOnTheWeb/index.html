@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Editable website</title>
+</head>
+<body>
+	<h1>Editable website</h1>
+	
+	<div>
+		<form onsubmit="saveFile()">
+			<p>Edit the file:<select width="50px" id="files"></select></p>	
+			<p><textarea id="editArea" cols="95" rows="25"></textarea></p>
+			<p>
+				<input type="text" id="fileToSave">
+				<input type="submit" value="Save">
+			</p>
+		</form>
+	</div>
+
+	<script src="editable-website.js"></script>
+</body>
+</html>

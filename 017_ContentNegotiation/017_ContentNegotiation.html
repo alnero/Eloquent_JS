@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Content Negotiation</title>
+</head>
+<body>
+	<script>
+    // Browsers doesn't allow synchronous 'GET' call, thus using promises in this exercise and sending req asyncly
+
+		function get(url, type){
+      		return new Promise(function(success, fali){
+        		var req = new XMLHttpRequest();
+        		req.open('GET', url, true);
+
+        		if(type) req.setRequestHeader('accept', type);
+
+        		req.addEventListener('load', function(){
+          			if(req.status < 400){
+            			success(req.responseText);
+          			} else {
+            			fali(new Error(req.statusText));
+          			}
+        		});
+
+        		req.addEventListener('error', function(){
+          			fail(new Error("Network Error"));
+        		})
+        
+        		req.send(null);
+      		});
+    	}
+
+    	var types = [ "text/plain"
+                 	 ,"text/html"
+                 	 ,"application/json"
+                 	 ,"application/rainbows+unicorns"];
+
+    	types.forEach(function(type){
+        	get("http://eloquentjavascript.net/author", type)
+          		.then(function(response){ console.log(response); })
+    	});
+
+	</script>
+</body>
+</html>
